@@ -1,5 +1,6 @@
 import { For, Show, createResource } from "solid-js";
 import Card from "../components/Card";
+import { A } from "@solidjs/router";
 
 export default function Home() {
   const [products] = createResource(() =>
@@ -26,6 +27,9 @@ export default function Home() {
                   <img class="p-3" src={product.image} alt={product.title} />
                 </div>
                 <h2 class="my-3">{product.title}</h2>
+                <A href={`/product/${product.id}`} class="btn self-center">
+                  View Product
+                </A>
               </div>
             </Card>
           )}
