@@ -10,3 +10,7 @@ body {
 .btn {
   @apply bg-amber-400 px-3 py-2 my-2 inline-block rounded-md;
 }
+
+h1, h2 {
+  @apply font-bold;
+}
