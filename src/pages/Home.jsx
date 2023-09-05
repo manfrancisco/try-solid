@@ -3,7 +3,7 @@ import Card from "../components/Card";
 
 export default function Home() {
   const [products] = createResource(() =>
-    fetch("http://fakestoreapi.com/products").then((res) => res.json()),
+    fetch("http://fakestoreapi.com/products").then((res) => res.json())
   );
 
   return (
@@ -17,16 +17,14 @@ export default function Home() {
         </div>
       }
     >
-      <div className="grid grid-cols-4 gap-10 my-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10 my-4">
         <For each={products()}>
           {(product) => (
             <Card rounded={true} flat={true}>
               <div class="flex flex-col h-full">
-                <img
-                  class="p-3 grow self-center"
-                  src={product.image}
-                  alt={product.title}
-                />
+                <div class="grow">
+                  <img class="p-3" src={product.image} alt={product.title} />
+                </div>
                 <h2 class="my-3">{product.title}</h2>
               </div>
             </Card>
