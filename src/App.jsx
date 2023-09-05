@@ -1,6 +1,8 @@
 import { createSignal } from "solid-js";
 import banner from "./assets/banner.png";
-import Card from "./components/Card";
+import { Route, Routes, A } from "@solidjs/router";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
 
 function App() {
   const [darkTheme, setDarkTheme] = createSignal(false);
@@ -22,28 +24,15 @@ function App() {
           light_mode
         </span>
         <h1>Ninja Merch</h1>
+        <A href="/">Home</A>
+        <A href="/cart">Cart</A>
       </header>
       <img class="rounded-md" src={banner} alt="site banner" />
 
-      <div class="grid grid-cols-4 gap-10 my-4">
-        <Card rounded={true} flat={false}>
-          <h2>Ninja Tee, Black</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam
-            delectus eius laborum officiis cupiditate neque.
-          </p>
-          <button class="btn">Click Me!</button>
-        </Card>
-        <Card rounded={false} flat={true}>
-          <h2>Ninja Tee, White</h2>
-          <button class="btn">Click Me!</button>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam
-            delectus eius laborum officiis cupiditate neque.
-          </p>
-          <p>Only $10</p>
-        </Card>
-      </div>
+      <Routes>
+        <Route path="/" component={Home} />
+        <Route path="/cart" component={Cart} />
+      </Routes>
     </div>
   );
 }
