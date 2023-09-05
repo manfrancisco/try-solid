@@ -1,6 +1,11 @@
+import { createResource } from "solid-js";
 import Card from "../components/Card";
 
 export default function Home() {
+  const [products] = createResource(() =>
+    fetch("https://fakestoreapi.com/products").then((res) => res.json()),
+  );
+
   return (
     <div class="grid grid-cols-4 gap-10 my-4">
       <Card rounded={true} flat={false}>
@@ -20,6 +25,8 @@ export default function Home() {
         </p>
         <p>Only $10</p>
       </Card>
+
+      <p>{console.log(products(), products.loading)}</p>
     </div>
   );
 }
