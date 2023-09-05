@@ -24,15 +24,15 @@ export default function Product() {
         }
       >
         <Card rounded={true}>
-          <div class="grid grid-cols-5 gap-7">
-            <div className="col-span-2">
-              <img src={product().image} alt={product().title} />
+          <div class="grid grid-cols-5 gap-7 text-left">
+            <div class="col-span-2">
+              <img class="m-4" src={product().image} alt={product().title} />
             </div>
 
-            <div class="col-span-3">
-              <h2 className="text-3xl font-bold mb-7">{product().title}</h2>
+            <div class="col-span-3 m-4">
+              <h2 class="text-3xl font-bold mb-7">{product().title}</h2>
               <p>{product().description}</p>
-              <p className="my-7 text-2xl">${product().price}</p>
+              <p class="my-7 text-2xl">${product().price}</p>
             </div>
           </div>
         </Card>
