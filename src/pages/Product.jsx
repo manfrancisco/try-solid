@@ -1,6 +1,7 @@
 import { useParams } from "@solidjs/router";
 import { Show, createResource } from "solid-js";
 import Card from "../components/Card";
+import { useCartContext } from "../context/CartContext";
 
 export default function Product() {
   const params = useParams();
@@ -10,6 +11,23 @@ export default function Product() {
       res.json()
     )
   );
+
+  const { items, setItems } = useCartContext();
+
+  function addToCart() {
+    const exists = items.find((p) => p.id === product().id);
+    if (exists) {
+      // Increment quantity
+      setItems(
+        (p) => p.id === product().id,
+        "quantity",
+        (q) => q + 1
+      );
+    } else {
+      // Add the new product
+      setItems([...items, {...product(), quantity: 1}])
+    }
+  }
 
   return (
     <div>
@@ -34,6 +52,10 @@ export default function Product() {
                 <h2 class="text-3xl font-bold mb-7">{product().title}</h2>
                 <p>{product().description}</p>
                 <p class="my-7 text-2xl">${product().price}</p>
+
+                <button class="btn" onClick={addToCart}>
+                  Add to Cart
+                </button>
               </div>
             </div>
           </Card>
